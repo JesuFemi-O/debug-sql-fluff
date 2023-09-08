@@ -1,0 +1,21 @@
+name: SQLFluff lint dbt models
+
+on:
+  pull_request:
+
+jobs:
+  sqlfluff-lint-models:
+    name: Lint dbt models using SQLFluff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+
+      - name: Install Python packages
+        run: pip install dbt-snowflake~=1.6.0 sqlfluff-templater-dbt
